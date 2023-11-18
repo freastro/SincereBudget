@@ -1,5 +1,6 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform)
+    alias(libs.plugins.multiplatform)
+    alias(libs.plugins.serialization)
 }
 
 kotlin {
@@ -7,11 +8,14 @@ kotlin {
 
     sourceSets {
         commonMain {
-
-        }
-        commonTest {
             dependencies {
-                implementation(libs.kotlin.test)
+                implementation(libs.kotlinx.coroutines.core)
+                implementation(libs.kotlinx.serialization.json)
+            }
+        }
+        jvmMain {
+            dependencies {
+                implementation(libs.selenium)
             }
         }
     }

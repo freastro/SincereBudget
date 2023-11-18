@@ -1,3 +1,4 @@
 plugins {
-    alias(libs.plugins.kotlin.multiplatform) apply false
+    alias(libs.plugins.multiplatform) apply false
+    alias(libs.plugins.serialization) apply false
 }
