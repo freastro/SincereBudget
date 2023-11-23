@@ -18,6 +18,7 @@ dependencyResolutionManagement {
             plugin("serialization", "org.jetbrains.kotlin.plugin.serialization").versionRef("kotlin")
 
             library("kotlinx-coroutines-core", "org.jetbrains.kotlinx", "kotlinx-coroutines-core").version("1.7.3")
+            library("kotlinx-html", "org.jetbrains.kotlinx", "kotlinx-html-js").version("0.9.1")
             library("kotlinx-serialization-json", "org.jetbrains.kotlinx", "kotlinx-serialization-json").version("1.6.0")
             library("selenium", "org.seleniumhq.selenium", "selenium-java").version("4.15.0")
         }
@@ -25,4 +26,6 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "SincereBudget"
+include("scraper:common")
+include("scraper:scripts")
 include("core")
