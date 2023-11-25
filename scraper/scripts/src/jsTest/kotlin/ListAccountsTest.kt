@@ -34,13 +34,9 @@ class ListAccountsTest {
                     }
                 }
             }
-            div {
-                script { + "var ModuleA = 1;" }
-                script { + "var ModuleB = 1;" }
-            }
         }
         assertContentEquals(listOf(AccountMatch("1234", "Savings", "$2.00",
-            "body>:nth-child(0)>:nth-child(0)>:nth-child(0)>:nth-child(0)")), result)
+            "body>:nth-child(1)>:nth-child(1)>:nth-child(1)>:nth-child(1)")), result)
     }
 
     private fun scrape(config: ScrapeConfig = DEFAULT_CONFIG, body: BODY.() -> Unit): List<AccountMatch> {

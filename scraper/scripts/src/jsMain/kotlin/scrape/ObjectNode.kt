@@ -5,4 +5,6 @@ open class ObjectNode<T>(val value: T, override val selector: String) : ScrapeNo
     override val inputs = emptyList<ScrapeNode>()
 
     override fun <R> accept(visitor: ScrapeVisitor<R>) = visitor.visitObject(this)
+
+    override fun toString() = "ObjectNode(value=$value, selector=$selector)"
 }
