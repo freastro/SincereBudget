@@ -34,12 +34,17 @@ class ListAccountsTest {
                     }
                 }
             }
+            div {
+                script { + "var ModuleA = 1;" }
+                script { + "var ModuleB = 1;" }
+            }
         }
-        assertContentEquals(listOf(AccountMatch("1234", "Savings", "$2.00", "")), result)
+        assertContentEquals(listOf(AccountMatch("1234", "Savings", "$2.00",
+            "body>:nth-child(0)>:nth-child(0)>:nth-child(0)>:nth-child(0)")), result)
     }
 
     private fun scrape(config: ScrapeConfig = DEFAULT_CONFIG, body: BODY.() -> Unit): List<AccountMatch> {
         val instance = ListAccounts(config)
-        return instance.scrape(document.create.body(block = body))
+        return instance.scrape(document.create.body(block = body), "body").getOrDefault(emptyList())
     }
 }

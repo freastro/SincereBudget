@@ -1,8 +1,9 @@
 import com.sincerepost.scraper.ScrapeConfig
-import scraper.ListAccounts
 import kotlinx.browser.document
+import org.w3c.dom.Element
+import scraper.ListAccounts
 
 @JsExport
-fun listAccounts(config: ScrapeConfig): Any? =
-    if (document.body != null) ListAccounts(config).scrape(document.body!!)
-    else null
+fun listAccounts(config: ScrapeConfig, start: Element? = document.body, selector: String = "body"): Result<Any?> =
+    if (start != null) ListAccounts(config).scrape(start, selector)
+    else Result.success(null)
