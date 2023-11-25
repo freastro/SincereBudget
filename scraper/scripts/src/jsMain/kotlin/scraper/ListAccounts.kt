@@ -3,26 +3,40 @@ package scraper
 import com.sincerepost.scraper.AccountMatch
 import com.sincerepost.scraper.ScrapeConfig
 import dom.DomWalker
-import org.w3c.dom.*
-import scrape.*
+import org.w3c.dom.Node
+import org.w3c.dom.asList
+import scrape.EmptyNode
+import scrape.ObjectNode
+import scrape.ScrapeNode
+import scrape.TextNode
 import kotlin.js.RegExp
 
+/**
+ * Extracts a list of accounts.
+ */
 class ListAccounts(config: ScrapeConfig) : Scraper<List<AccountMatch>>(config) {
 
+    /** Node for a list of accounts. */
     class AccountsNode(accounts: List<AccountMatch>, selector: String) :
         ObjectNode<List<AccountMatch>>(accounts, selector) {
         override fun toString() = "AccountsNode(accounts=${value}, selector=${selector})"
     }
+    /** Node for an account balance. */
     class BalanceNode(value: String, val isCurrent: Boolean, selector: String) : TextNode(value, selector) {
         override fun toString() = "BalanceNode(value=${value}, isCurrent=${isCurrent}, selector=${selector})"
     }
+    /** Node for a currency value. */
     class CurrencyNode(value: String, selector: String) : TextNode(value, selector) {
         override fun toString() = "CurrencyNode(value=${value}, selector=${selector})"
     }
+    /** Node for a non-balance, non-currency text value. */
     class OtherTextNode(value: String, selector: String) : TextNode(value, selector) {
         override fun toString() = "OtherTextNode(value=${value}, selector=${selector})"
     }
 
+    /**
+     * Walk the DOM tree converting DOM nodes to `ScrapeNode` instances.
+     */
     inner class DomScraper : DomWalker<ScrapeNode>() {
 
         override fun visitElement(el: Node, selector: String): ScrapeNode {
