@@ -1,6 +1,6 @@
-package com.sincerepost.budget.jvm
+package com.sincerepost.scraper.jvm
 
-import com.sincerepost.budget.WebKit
+import com.sincerepost.scraper.WebKit
 import org.openqa.selenium.chrome.ChromeDriver
 
 class Selenium : WebKit {

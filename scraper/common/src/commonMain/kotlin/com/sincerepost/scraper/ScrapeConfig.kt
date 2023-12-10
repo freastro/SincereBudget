@@ -1,9 +1,11 @@
 package com.sincerepost.scraper
 
+import kotlinx.serialization.Serializable
 import kotlin.js.JsExport
 
 @JsExport
-interface ScrapeConfig {
+@Serializable
+sealed interface ScrapeConfig {
 
     val currencyRegex: String
 }

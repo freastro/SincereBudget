@@ -1,5 +1,12 @@
+import org.jetbrains.kotlin.gradle.targets.js.webpack.KotlinWebpack
+
 plugins {
     alias(libs.plugins.multiplatform)
+}
+
+val scraper by configurations.creating {
+    isCanBeConsumed = true
+    isCanBeResolved = false
 }
 
 dependencies {
@@ -18,10 +25,17 @@ kotlin {
                 }
             }
             webpackTask {
-                mainOutputFileName = "scraper.js"
+                mainOutputFileName = "${scraper.name}.js"
                 output.library = "Scraper"
                 output.libraryTarget = "var"
             }
         }
+    }
+}
+
+artifacts {
+    val webpack = tasks.named<KotlinWebpack>("jsBrowserProductionWebpack").get()
+    add(scraper.name, webpack.outputDirectory.get()) {
+        builtBy(webpack)
     }
 }

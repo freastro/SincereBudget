@@ -27,5 +27,6 @@ dependencyResolutionManagement {
 
 rootProject.name = "SincereBudget"
 include("scraper:common")
-include("scraper:scripts")
+include("scraper:browser")
+include("scraper:runner")
 include("core")

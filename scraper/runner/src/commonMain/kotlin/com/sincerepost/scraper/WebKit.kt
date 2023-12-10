@@ -1,4 +1,4 @@
-package com.sincerepost.budget
+package com.sincerepost.scraper
 
 interface WebKit {
 
