@@ -1,3 +1,6 @@
+rootProject.name = "SincereBudget"
+enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
+
 pluginManagement {
     repositories {
         gradlePluginPortal()
@@ -7,6 +10,7 @@ pluginManagement {
 
 dependencyResolutionManagement {
     repositories {
+        google()
         mavenCentral()
     }
     versionCatalogs {
@@ -14,6 +18,7 @@ dependencyResolutionManagement {
             version("kotlin", "1.9.20")
             version("ktor", "2.3.5")
 
+            plugin("compose", "org.jetbrains.compose").version("1.6.2")
             plugin("multiplatform", "org.jetbrains.kotlin.multiplatform").versionRef("kotlin")
             plugin("serialization", "org.jetbrains.kotlin.plugin.serialization").versionRef("kotlin")
 
@@ -27,6 +32,7 @@ dependencyResolutionManagement {
 
 rootProject.name = "SincereBudget"
 include("api:iex-parser")
+include("app")
 include("scraper:common")
 include("scraper:browser")
 include("scraper:runner")
