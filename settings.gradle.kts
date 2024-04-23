@@ -26,6 +26,7 @@ dependencyResolutionManagement {
 }
 
 rootProject.name = "SincereBudget"
+include("api:iex-parser")
 include("scraper:common")
 include("scraper:browser")
 include("scraper:runner")
